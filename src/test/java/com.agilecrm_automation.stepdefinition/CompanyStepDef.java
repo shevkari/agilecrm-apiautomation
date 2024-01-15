@@ -1,5 +1,6 @@
 package com.agilecrm_automation.stepdefinition;
 
+import com.agilecrm_automation.common.CommonFunctions;
 import com.agilecrm_automation.pojo.CreateCompanyPojo;
 import com.agilecrm_automation.pojo.CreateCompanyResponsePojo;
 import com.github.javafaker.Faker;
@@ -1052,5 +1053,24 @@ public class CompanyStepDef {
         List<Long> idList = response.jsonPath().getList("id");
 
         Assert.assertFalse(idList.equals(createCompanyPojo.getId()));
+    }
+
+    @Given("I create company with file body")
+    public void iCreateCompanyWithFileBody() throws IOException {
+
+        String filePath = System.getProperty("user.dir")+"/src/test/resources/RequestFiles/CreateCompanyRequest.json";
+        File file = new File(filePath);
+        CommonFunctions commonFunctions = new CommonFunctions();
+        response = commonFunctions.getResponseWithRequestBody(file,"company");
+
+    }
+
+    @Then("I verify company created in response")
+    public void iVerifyCompanyCreatedInResponse() {
+        response.prettyPrint();
+
+        Assert.assertEquals(200,response.getStatusCode());
+
+
     }
 }

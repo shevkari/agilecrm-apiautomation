@@ -94,3 +94,7 @@ Feature: Verify CRUD operation on company module
       Then I verify delete Company Successfully in particular company Api
       And I verify company deleted successfully in get all Company Api
 
+    @CreateComWithFile
+    Scenario: Verify Create Company With file request body
+      Given I create company with file body
+      Then I verify company created in response

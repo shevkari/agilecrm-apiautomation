@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
       //  tags = "@EndToEndScenarioEvent"
       //  tags = /*"@FileUpload"*/ "@FileDownloadByteStream"
       //  tags ="@ContactDynamicSearch"
-        tags ="@GetContactList"
+        tags = "@CreateComWithFile"
  )
 public class TestRunner {
 }
