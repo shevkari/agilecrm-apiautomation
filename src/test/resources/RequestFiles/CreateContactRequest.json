@@ -1,0 +1,31 @@
+{
+  "star_value": "3",
+  "lead_score": "110",
+  "tags": [
+    "one down"
+
+  ],
+  "properties": [
+    {
+      "type": "SYSTEM",
+      "name": "first_name",
+      "value": "Virat"
+    },
+    {
+      "type": "SYSTEM",
+      "name": "last_name",
+      "value": "Kohli"
+    },
+    {
+      "type": "SYSTEM",
+      "name": "email",
+      "subtype": "work",
+      "value": "viratkohli22@india.com"
+    },
+    {
+      "type": "SYSTEM",
+      "name": "address",
+      "value": "{\"address\":\"225 George Street\",\"city\":\"NSW\",\"state\":\"Sydney\",\"zip\":\"2000\",\"country\":\"Australia\"}"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Deal-Tomato",
+  "expected_value": "500",
+  "probability": "75",
+  "close_date": 1455042600,
+  "milestone": "Proposal",
+  "contact_ids": [
+    "5694691248963584"
+  ],
+  "custom_data": [
+    {
+      "name": "Group Size",
+      "value": "10"
+    }
+  ]
+}

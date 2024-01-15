@@ -1,0 +1,43 @@
+{
+  "type": "COMPANY",
+  "star_value": 4,
+  "lead_score": 120,
+  "tags": [
+    "Permanent",
+    "USA",
+    "Hongkong",
+    "Japan"
+  ],
+  "properties": [
+    {
+      "name": "Company Type",
+      "type": "CUSTOM",
+      "value": "MNC Inc"
+    },
+    {
+      "type": "SYSTEM",
+      "name": "name",
+      "value": "Amazon"
+    },
+    {
+      "type": "SYSTEM",
+      "name": "url",
+      "value": "http://www.Amazon.com/"
+    },
+    {
+      "name": "phone",
+      "value": "45500000",
+      "subtype": ""
+    },
+    {
+      "name": "website",
+      "value": "http://www.linkedin.com/company/agile-crm",
+      "subtype": "LINKEDIN"
+    },
+    {
+      "name": "address",
+      "value": "{\"address\":\"MS 35, 440 N Wolfe Road\",\"city\":\"Sunnyvale\",\"state\":\"CA\",\"zip\":\"94085\",\"country\":\"US\"}",
+      "subtype": "office"
+    }
+  ]
+}

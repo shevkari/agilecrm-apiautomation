@@ -1,0 +1,11 @@
+{
+  "title": "Today Test event",
+  "allDay": true,
+  "color": "red",
+  "start": 1409682600,
+  "end": 1409768100,
+  "contacts": [
+    "721001",
+    "722001"
+  ]
+}
