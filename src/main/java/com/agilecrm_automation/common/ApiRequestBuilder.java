@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.SpecificationQuerier;
 import org.json.simple.JSONObject;
 
 import java.io.File;
@@ -35,19 +36,19 @@ public class ApiRequestBuilder {
         PropertyHandler propertyHandler = new PropertyHandler("endpoints.properties");
         switch (method){
             case GET:
-                response = specification.get(propertyHandler.getProperty(endpoint));
+                response = specification.get(propertyHandler.getProperty(endpoint)+getParam());
                 break;
             case POST:
-                response = specification.post(propertyHandler.getProperty(endpoint));
+                response = specification.post(propertyHandler.getProperty(endpoint)+getParam());
                 break;
             case PATCH:
-                response = specification.patch(propertyHandler.getProperty(endpoint));
+                response = specification.patch(propertyHandler.getProperty(endpoint)+getParam());
                 break;
             case PUT:
-                response = specification.put(propertyHandler.getProperty(endpoint));
+                response = specification.put(propertyHandler.getProperty(endpoint)+getParam());
                 break;
             case DELETE:
-                response = specification.delete(propertyHandler.getProperty(endpoint));
+                response = specification.delete(propertyHandler.getProperty(endpoint)+getParam());
                 break;
         }
     }
@@ -59,9 +60,9 @@ public class ApiRequestBuilder {
         }
     }
 
-    public void setQueryParams(Map<String,String> quertParams){
-        if(quertParams!=null && !quertParams.isEmpty()){
-            specification.queryParams(quertParams);
+    public void setQueryParams(Map<String,String> queryParams){
+        if(queryParams!=null && !queryParams.isEmpty()){
+            specification.queryParams(queryParams);
         }
     }
 
@@ -91,6 +92,25 @@ public class ApiRequestBuilder {
             specification.body(object);
         }
     }
+
+
+    //check if the path parameter is already set in specification
+    public String getParam(){
+        String parameter = SpecificationQuerier.query(specification).getPathParams().get("param");
+
+        if( parameter != null && !parameter.isEmpty()){
+            return "/{param}";
+        }else {
+            return "" ;
+        }
+    }
+
+    public void setPathParam(String pathParam){
+        if(pathParam != null && !pathParam.isEmpty()){
+            specification.pathParam("param", pathParam );
+        }
+    }
+
 
 
 

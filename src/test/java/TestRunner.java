@@ -31,14 +31,19 @@ import org.junit.runner.RunWith;
       //  tags = /*"@ContactSerialization"*/ /*"@CompanySerialization"*/ /*"@DealSerialization"*/ /*"@TaskSerialization"*/ "@EventSerialization"
       //  tags = "@Test"  /*"@premTest"*/   /*"@MadamTest"*/
       //  tags = /*"@ReqresDeSerialization"*/  "@CompanyDeSerialization"
-      // tags = /*"@reqresSerial&Deserializ"*/ "@CompanySerialization&DeSerialization"
+      //  tags = /*"@reqresSerial&Deserializ"*/ "@CompanySerialization&DeSerialization"
       //  tags = "@ContactSerialization&Deserialization"
       //  tags = "@DealSerialization&DeSerialization"
       //  tags =/*"@EndToEndScenario"*/ /*"@EndToEndScenarioContact"*/ "@EndToEndScenarioDeal"
       //  tags = "@EndToEndScenarioEvent"
       //  tags = /*"@FileUpload"*/ "@FileDownloadByteStream"
       //  tags ="@ContactDynamicSearch"
-        tags = "@CreateComWithFile"
+      //  tags = "@CreateComWithFile"
+      //  tags = "@CreateComWithString"
+      //  tags =" @CreateComWithPojo"
+        tags = "@UpdateComWithString"
+      //  tags = "@DeleteCompany"
+
  )
 public class TestRunner {
 }

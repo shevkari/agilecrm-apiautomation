@@ -1061,7 +1061,7 @@ public class CompanyStepDef {
         String filePath = System.getProperty("user.dir")+"/src/test/resources/RequestFiles/CreateCompanyRequest.json";
         File file = new File(filePath);
         CommonFunctions commonFunctions = new CommonFunctions();
-        response = commonFunctions.getResponseWithRequestBody(file,"company");
+        response = commonFunctions.postWithRequestBody(file,"company");
 
     }
 
@@ -1072,5 +1072,151 @@ public class CompanyStepDef {
         Assert.assertEquals(200,response.getStatusCode());
 
 
+    }
+
+    @Given("I create company with String body")
+    public void iCreateCompanyWithStringBody() throws IOException {
+        String reqBody = "{\n" +
+                "    \"type\": \"COMPANY\",\n" +
+                "    \"star_value\": 4,\n" +
+                "    \"lead_score\": 120,\n" +
+                "    \"tags\": [\n" +
+                "        \"Permanent\",\n" +
+                "        \"USA\",\n" +
+                "        \"Hongkong\",\n" +
+                "        \"Japan\"\n" +
+                "    ],\n" +
+                "    \"properties\": [\n" +
+                "        {\n" +
+                "            \"name\": \"Company Type\",\n" +
+                "            \"type\": \"CUSTOM\",\n" +
+                "            \"value\": \"MNC Inc\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"type\": \"SYSTEM\",\n" +
+                "            \"name\": \"name\",\n" +
+                "            \"value\": \"Spicejet\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"type\": \"SYSTEM\",\n" +
+                "            \"name\": \"url\",\n" +
+                "            \"value\": \"http://www.spicejet.com/\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"phone\",\n" +
+                "            \"value\": \"45500000\",\n" +
+                "            \"subtype\": \"\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"website\",\n" +
+                "            \"value\": \"http://www.linkedin.com/company/agile-crm\",\n" +
+                "            \"subtype\": \"LINKEDIN\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"address\",\n" +
+                "            \"value\": \"{\\\"address\\\":\\\"MS 35, 440 N Wolfe Road\\\",\\\"city\\\":\\\"Sunnyvale\\\",\\\"state\\\":\\\"CA\\\",\\\"zip\\\":\\\"94085\\\",\\\"country\\\":\\\"US\\\"}\",\n" +
+                "            \"subtype\": \"office\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+
+        CommonFunctions commonFunctions = new CommonFunctions();
+        response=commonFunctions.postWithRequestBody(reqBody,"company");
+    }
+
+    @Then("I verify company created Successfully in response")
+    public void iVerifyCompanyCreatedSuccessfullyInResponse() {
+        response.prettyPrint();
+
+        Assert.assertEquals(200,response.getStatusCode());
+
+    }
+
+    @Given("I create company with Pojo body")
+    public void iCreateCompanyWithPojoBody() throws IOException {
+        createCompanyPojo = new CreateCompanyPojo();
+        createCompanyPojo.setType("COMPANY");
+        List<Map<String,String>> list = new ArrayList<>();
+        Map<String,String> propMap1 = new HashMap<>(Map.of("name","CompanyType","type","CUSTOM",
+                "value","MNC Inc"));
+        Map<String,String> propMap2 = new HashMap<>(Map.of("type","SYSTEM","name","name",
+                "value",faker.company().name()));
+        Map<String,String> propMap3 = new HashMap<>(Map.of("type","SYSTEM","name","url",
+                "value",faker.company().url()));
+        list.add(propMap1);
+        list.add(propMap2);
+        list.add(propMap3);
+        createCompanyPojo.setProperties(list);
+
+        CommonFunctions commonFunctions = new CommonFunctions();
+        response = commonFunctions.postWithRequestBody(createCompanyPojo,"company");
+
+    }
+
+
+    @Then("I verify company Retrieve Successfully in response")
+    public void iVerifyCompanyRetrieveSuccessfullyInResponse() throws IOException {
+
+        CommonFunctions commonFunctions = new CommonFunctions();
+        Long expId = response.jsonPath().getLong("id");
+
+        response = commonFunctions.getResponseWithPathParams(expId.toString(),"company");
+        response.prettyPrint();
+
+        Assert.assertEquals(200,response.getStatusCode());
+
+        Long actId = response.jsonPath().getLong("id");
+        Assert.assertEquals(expId,actId);
+
+    }
+
+
+    @Given("I update company with String body")
+    public void iUpdateCompanyWithStringBody() throws IOException {
+
+        String reqBody = "{\n" +
+                "    \"id\": 4523050643816448,\n" +
+                "    \"properties\": [\n" +
+                "        {\n" +
+                "            \"type\": \"SYSTEM\",\n" +
+                "            \"name\": \"name\",\n" +
+                "            \"value\": \"AMAZON\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"type\": \"SYSTEM\",\n" +
+                "            \"name\": \"url\",\n" +
+                "            \"value\": \"http://www.amazon.com/\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"phone\",\n" +
+                "            \"value\": \"45500000\",\n" +
+                "            \"subtype\": \"\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+
+        CommonFunctions commonFunctions = new CommonFunctions();
+        response = commonFunctions.putWithRequestBody(reqBody,"updateContact");
+
+
+    }
+
+    @Then("I verify company updated Successfully in response")
+    public void iVerifyCompanyUpdatedSuccessfullyInResponse() {
+        response.prettyPrint();
+        System.out.println(response.getStatusCode());
+    }
+
+    @Given("I Delete company")
+    public void iDeleteCOmpany() throws IOException {
+
+        CommonFunctions commonFunctions = new CommonFunctions();
+        response = commonFunctions.deleteWithPathParams("4523050643816448","deleteCompany");
+    }
+
+    @Then("I verify company deleted Successfully in response")
+    public void iVerifyCompanyDeletedSuccessfullyInResponse() {
+        response.prettyPrint();
+        System.out.println(response.getStatusCode());
     }
 }

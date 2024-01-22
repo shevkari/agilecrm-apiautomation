@@ -26,15 +26,52 @@ public class CommonFunctions {
         return requestBuilder.response;
     }
 
-    public Response getResponseWithRequestBody(File file,String endpoint) throws IOException {
+    public Response getResponseWithPathParams(String pathParam, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setPathParam(pathParam);
+        requestBuilder.execute(Method.GET,endpoint);
+        return requestBuilder.response;
+    }
+
+    public Response postWithRequestBody(File file,String endpoint) throws IOException {
         requestBuilder.setupRequestConfigs();
         requestBuilder.setRequestBody(file);
         requestBuilder.execute(Method.POST,endpoint);
         return requestBuilder.response;
-
-
     }
 
+    public Response postWithRequestBody(String body,String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(body);
+        requestBuilder.execute(Method.POST,endpoint);
+        return requestBuilder.response;
+    }
 
+    public Response postWithRequestBody(Object object,String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(object);
+        requestBuilder.execute(Method.POST,endpoint);
+        return requestBuilder.response;
+    }
 
+    public Response putWithRequestBody(String body, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(body);
+        requestBuilder.execute(Method.PUT,endpoint);
+        return requestBuilder.response;
+    }
+
+    public Response deleteWithPathParams(String pathParam, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setPathParam(pathParam);
+        requestBuilder.execute(Method.DELETE,endpoint);
+        return requestBuilder.response;
+    }
+
+    public Response patchWithRequestBody(String body, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(body);
+        requestBuilder.execute(Method.PATCH,endpoint);
+        return requestBuilder.response;
+    }
 }

@@ -98,3 +98,25 @@ Feature: Verify CRUD operation on company module
     Scenario: Verify Create Company With file request body
       Given I create company with file body
       Then I verify company created in response
+
+
+  @CreateComWithString
+  Scenario: Verify Create Company With String request body
+    Given I create company with String body
+    Then I verify company created Successfully in response
+
+  @CreateComWithPojo
+  Scenario: Verify Create Company With String Pojo request body
+    Given I create company with Pojo body
+    Then I verify company created Successfully in response
+    Then I verify company Retrieve Successfully in response
+
+  @UpdateComWithString
+  Scenario: Verify Update Company With String request body
+    Given I update company with String body
+    Then I verify company updated Successfully in response
+
+  @DeleteCompany
+  Scenario: Verify Delete Company
+    Given I Delete company
+    Then I verify company deleted Successfully in response
