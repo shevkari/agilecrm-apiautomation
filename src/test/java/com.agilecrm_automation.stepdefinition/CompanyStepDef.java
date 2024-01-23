@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -1219,4 +1220,24 @@ public class CompanyStepDef {
         response.prettyPrint();
         System.out.println(response.getStatusCode());
     }
+
+    @Given("I update company with Pojo Class request body")
+    public void iUpdateCompanyWithPojoClassRequestBody() throws IOException {
+        createCompanyPojo = new CreateCompanyPojo();
+        createCompanyPojo.setId(4523059074367488l);
+        List<Map<String,String>> list = new ArrayList<>();
+        Map<String,String> propMap2 = new HashMap<>(Map.of("type","SYSTEM","name","name",
+                "value",faker.company().name()));
+        Map<String,String> propMap3 = new HashMap<>(Map.of("type","SYSTEM","name","url",
+                "value",faker.company().url()));
+        list.add(propMap2);
+        list.add(propMap3);
+        createCompanyPojo.setProperties(list);
+
+        CommonFunctions commonFunctions = new CommonFunctions();
+        response=commonFunctions.putWithRequestBody(createCompanyPojo,"updateContact");
+    }
+
+
+
 }

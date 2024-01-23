@@ -120,3 +120,8 @@ Feature: Verify CRUD operation on company module
   Scenario: Verify Delete Company
     Given I Delete company
     Then I verify company deleted Successfully in response
+
+  @UpdateComWithClassPojo
+  Scenario: Verify Update Company With Pojo Class request body
+    Given I update company with Pojo Class request body
+    Then I verify company updated Successfully in response

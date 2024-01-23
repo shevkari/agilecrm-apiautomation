@@ -61,6 +61,20 @@ public class CommonFunctions {
         return requestBuilder.response;
     }
 
+    public Response putWithRequestBody(Object object, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(object);
+        requestBuilder.execute(Method.PUT,endpoint);
+        return requestBuilder.response;
+    }
+
+    public Response putWithRequestBody(File file, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(file);
+        requestBuilder.execute(Method.PUT,endpoint);
+        return requestBuilder.response;
+    }
+
     public Response deleteWithPathParams(String pathParam, String endpoint) throws IOException {
         requestBuilder.setupRequestConfigs();
         requestBuilder.setPathParam(pathParam);
@@ -71,6 +85,20 @@ public class CommonFunctions {
     public Response patchWithRequestBody(String body, String endpoint) throws IOException {
         requestBuilder.setupRequestConfigs();
         requestBuilder.setRequestBody(body);
+        requestBuilder.execute(Method.PATCH,endpoint);
+        return requestBuilder.response;
+    }
+
+    public Response patchWithRequestBody(Object object, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(object);
+        requestBuilder.execute(Method.PATCH,endpoint);
+        return requestBuilder.response;
+    }
+
+    public Response patchWithRequestBody(File file, String endpoint) throws IOException {
+        requestBuilder.setupRequestConfigs();
+        requestBuilder.setRequestBody(file);
         requestBuilder.execute(Method.PATCH,endpoint);
         return requestBuilder.response;
     }

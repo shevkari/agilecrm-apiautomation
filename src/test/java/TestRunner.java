@@ -41,7 +41,7 @@ import org.junit.runner.RunWith;
       //  tags = "@CreateComWithFile"
       //  tags = "@CreateComWithString"
       //  tags =" @CreateComWithPojo"
-        tags = "@UpdateComWithString"
+        tags = /*"@UpdateComWithString"*/ "@UpdateComWithClassPojo"
       //  tags = "@DeleteCompany"
 
  )
